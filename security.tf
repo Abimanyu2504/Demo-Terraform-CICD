@@ -24,7 +24,7 @@ resource "aws_security_group" "web-sg" {
 }
 
 #Create Application security group
-resource "aws_security_group" "web-sg" {
+resource "aws_security_group" "Application-sg" {
     name = "Application-sg"
     description = "Allow HTTP inbound traffic"
     vpc_id = aws_vpc.my-vpc.id
@@ -34,7 +34,7 @@ resource "aws_security_group" "web-sg" {
       from_port = 80
       protocol = "tcp"
       to_port = 80
-      security_groups = [aws_security_group.Application-sg.id]
+      security_groups = [aws_security_group.web-sg.id]
     }
 
     egress {
@@ -50,7 +50,7 @@ resource "aws_security_group" "web-sg" {
 }
 
 #Create Database security group
-resource "aws_security_group" "web-sg" {
+resource "aws_security_group" "database-sg" {
     name = "database-sg"
     description = "Allow HTTP inbound traffic"
     vpc_id = aws_vpc.my-vpc.id
@@ -60,7 +60,7 @@ resource "aws_security_group" "web-sg" {
       from_port = 3306
       protocol = "tcp"
       to_port = 3306
-      security_groups = [aws_security_group.database-sg.id]
+      security_groups = [aws_security_group.web-sg.id]
     }
 
     egress {
