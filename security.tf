@@ -24,7 +24,7 @@ resource "aws_security_group" "web-sg" {
 }
 
 #Create Application security group
-resource "aws_security_group" "Application-sg" {
+resource "aws_security_group" "web-sg" {
     name = "Application-sg"
     description = "Allow HTTP inbound traffic"
     vpc_id = aws_vpc.my-vpc.id
@@ -50,7 +50,7 @@ resource "aws_security_group" "Application-sg" {
 }
 
 #Create Database security group
-resource "aws_security_group" "database-sg" {
+resource "aws_security_group" "web-sg" {
     name = "database-sg"
     description = "Allow HTTP inbound traffic"
     vpc_id = aws_vpc.my-vpc.id
